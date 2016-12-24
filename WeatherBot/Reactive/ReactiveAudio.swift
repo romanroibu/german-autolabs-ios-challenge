@@ -33,6 +33,38 @@ public protocol ReactiveInputAudioService {
 public final class ReactiveInputAudioCaptureSession: ReactiveInputAudioService {
     private static let mediaType = AVMediaTypeAudio
 
+    public static var inputAudioSampleBuffer: SignalProducer<CMSampleBuffer, InputAudioError> {
+        let captureSession = AVCaptureSession()
+        let delegate = ReactiveCaptureAudioDataOutputDelegate()
+
+        do { //Setup audio input
+            guard let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: self.mediaType) else {
+                return SignalProducer<CMSampleBuffer, InputAudioError>(error: .noAudioDevice)
+            }
+            let audioInput  = try AVCaptureDeviceInput(device: audioDevice)
+            captureSession.addInput(audioInput)
+        } catch {
+            return SignalProducer<CMSampleBuffer, InputAudioError>(error: .audioInputFailure(error))
+        }
+
+        do { //Setup audio output
+            let audioOutput = AVCaptureAudioDataOutput()
+            let queue = DispatchQueue(label: "\(audioOutput)")
+            audioOutput.setSampleBufferDelegate(delegate, queue: queue)
+            captureSession.addOutput(audioOutput)
+        }
+
+        return SignalProducer<CMSampleBuffer, InputAudioError>(delegate.didOutputSampleBuffer.promoteErrors(InputAudioError.self))
+            .on(started: {
+                    captureSession.startRunning()
+                },
+                terminated: {
+                    //Capture strong reference to avoid deallocation
+                    _ = delegate
+                    captureSession.stopRunning()
+                })
+    }
+
     public static var requestAuthorization: SignalProducer<InputAudioAuthorizationLevel, InputAudioAuthorizationError> {
         let authorizationChanges = SignalProducer<InputAudioAuthorizationLevel, InputAudioAuthorizationError> { observer, disposable in
             AVCaptureDevice.requestAccess(forMediaType: self.mediaType) { granted in
