@@ -23,6 +23,20 @@ public enum LocationError: Error {
     case authorization(LocationAuthorizationError)
 }
 
+extension LocationError {
+    internal init(clerror: CLError) {
+        switch clerror.code {
+        case .locationUnknown: self = .locationUnknown
+        case .denied: self = .denied
+        case .network: self = .network
+        case .deferredFailed: self = .deferredFailed
+        case .deferredAccuracyTooLow: self = .deferredAccuracyTooLow
+        case .deferredCanceled: self = .deferredCanceled
+        default: self = .unknown
+        }
+    }
+}
+
 public enum LocationAuthorizationLevel {
     case whenInUse
     case always
