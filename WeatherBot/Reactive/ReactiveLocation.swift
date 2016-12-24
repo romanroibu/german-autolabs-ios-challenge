@@ -52,6 +52,20 @@ public protocol ReactiveLocationService {
     static func requestAuthorization(desired: LocationAuthorizationLevel) -> SignalProducer<LocationAuthorizationLevel, LocationAuthorizationError>
 }
 
+extension ReactiveLocationService {
+    public static func authorized<T>(_ signal: SignalProducer<T, LocationError>, desiredLevel: LocationAuthorizationLevel = .whenInUse) -> SignalProducer<T, LocationError> {
+        return self.requestAuthorization(desired: desiredLevel)
+            .take(last: 1)
+            .flatMapError { error in
+                return SignalProducer(error: LocationError.authorization(error))
+            }
+            .flatMap(.latest) { level -> SignalProducer<T, LocationError> in
+                //TODO: if level is lower than desired, signal an error
+                return signal
+            }
+    }
+}
+
 extension CLLocationManager: ReactiveLocationService {
     public static var singleCoordinate: SignalProducer<Coordinate, LocationError> {
         return self.singleLocation.map { location in
