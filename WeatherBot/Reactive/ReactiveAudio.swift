@@ -20,6 +20,9 @@ public enum InputAudioAuthorizationError: Error {
 }
 
 public enum InputAudioError: Error {
+    case noAudioDevice //very unlikely :)
+    case audioInputFailure(Error)
+    case authorization(InputAudioAuthorizationError)
 }
 
 public protocol ReactiveInputAudioService {
