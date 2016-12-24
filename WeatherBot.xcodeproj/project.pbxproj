@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		304C4C981E0EFD9C0002F7A4 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304C4C961E0EFD9C0002F7A4 /* ReactiveSwift.framework */; };
 		304C4C991E0EFD9C0002F7A4 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304C4C971E0EFD9C0002F7A4 /* Result.framework */; };
+		304C4C9C1E0EFE520002F7A4 /* ReactiveLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C4C9B1E0EFE520002F7A4 /* ReactiveLocation.swift */; };
 		304C4C9F1E0F02D20002F7A4 /* ReactiveSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C4C9E1E0F02D20002F7A4 /* ReactiveSwift.swift */; };
 		305677F01E0ECB0C007737C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305677EF1E0ECB0C007737C3 /* AppDelegate.swift */; };
 		305677F21E0ECB0C007737C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305677F11E0ECB0C007737C3 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		304C4C961E0EFD9C0002F7A4 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		304C4C971E0EFD9C0002F7A4 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		304C4C9B1E0EFE520002F7A4 /* ReactiveLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveLocation.swift; path = Reactive/ReactiveLocation.swift; sourceTree = "<group>"; };
 		304C4C9E1E0F02D20002F7A4 /* ReactiveSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveSwift.swift; path = Reactive/ReactiveSwift.swift; sourceTree = "<group>"; };
 		305677EC1E0ECB0C007737C3 /* WeatherBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		305677EF1E0ECB0C007737C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				304C4C9E1E0F02D20002F7A4 /* ReactiveSwift.swift */,
+				304C4C9B1E0EFE520002F7A4 /* ReactiveLocation.swift */,
 			);
 			name = Reactive;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				305677F21E0ECB0C007737C3 /* ViewController.swift in Sources */,
 				305677F01E0ECB0C007737C3 /* AppDelegate.swift in Sources */,
 				304C4C9F1E0F02D20002F7A4 /* ReactiveSwift.swift in Sources */,
+				304C4C9C1E0EFE520002F7A4 /* ReactiveLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
