@@ -90,6 +90,59 @@ extension CLLocationManager: ReactiveLocationService {
                 })
     }
 
+    public static func requestAuthorization(desired: LocationAuthorizationLevel = .whenInUse) -> SignalProducer<LocationAuthorizationLevel, LocationAuthorizationError> {
+        let manager = CLLocationManager()
+        let delegate = ReactiveLocationDelegate()
+
+        manager.delegate = delegate
+
+        let authorizationChanges = SignalProducer(delegate.didChangeAuthorizationStatus)
+            .on(started: {
+                    switch desired {
+                    case .always: manager.requestAlwaysAuthorization()
+                    case .whenInUse: manager.requestWhenInUseAuthorization()
+                    }
+                },
+                terminated: {
+                    //Capture strong reference to avoid deallocation
+                    _ = manager
+                    _ = delegate
+                })
+            .filter { $0 != .notDetermined }
+            .promoteErrors(LocationAuthorizationError.self)
+            .take(first: 1)
+            .flatMap(.latest, transform: self.authorizationLevel)
+
+        return SignalProducer<CLAuthorizationStatus, LocationAuthorizationError> { observer, disposable in
+                observer.send(value: CLLocationManager.authorizationStatus())
+                observer.sendCompleted()
+            }
+            .flatMap(.latest) { status -> SignalProducer<LocationAuthorizationLevel, LocationAuthorizationError> in
+                if case .notDetermined = status {
+                    return authorizationChanges
+                } else {
+                    return self.authorizationLevel(from: status)
+                }
+            }
+    }
+
+    internal static func authorizationLevel(from status: CLAuthorizationStatus) -> SignalProducer<LocationAuthorizationLevel, LocationAuthorizationError> {
+        switch status {
+        case .authorizedAlways:
+            return SignalProducer(value: .always)
+        case .authorizedWhenInUse:
+            return SignalProducer(value: .whenInUse)
+        case .denied:
+            return SignalProducer(error: .denied)
+        case .restricted:
+            return SignalProducer(error: .restricted)
+        case .notDetermined:
+            assertionFailure("Should be determined by now")
+            return SignalProducer(error: .restricted)
+        }
+    }
+}
+
 internal final class ReactiveLocationDelegate: NSObject, CLLocationManagerDelegate {
 
     private let didChangeAuthorizationStatusPipe = Signal<CLAuthorizationStatus, NoError>.pipe()
