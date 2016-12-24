@@ -11,7 +11,7 @@ import ReactiveSwift
 import Result
 
 public enum InputAudioAuthorizationLevel {
-    case granted
+    case authorized
 }
 
 public enum InputAudioAuthorizationError: Error {
