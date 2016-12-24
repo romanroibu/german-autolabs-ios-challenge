@@ -72,4 +72,17 @@ public final class ReactiveInputAudioCaptureSession: ReactiveInputAudioService {
         }
     }
 }
+
+internal final class ReactiveCaptureAudioDataOutputDelegate: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate {
+
+    private let sampleBufferPipe = Signal<CMSampleBuffer, NoError>.pipe()
+
+    var didOutputSampleBuffer: Signal<CMSampleBuffer, NoError> {
+        return self.sampleBufferPipe.output
+    }
+
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        guard let sample = sampleBuffer else { return }
+        self.sampleBufferPipe.input.send(value: sample)
+    }
 }
