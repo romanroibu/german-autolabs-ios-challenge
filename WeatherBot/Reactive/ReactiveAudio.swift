@@ -16,6 +16,7 @@ public enum InputAudioAuthorizationLevel {
 
 public enum InputAudioAuthorizationError: Error {
     case denied
+    case restricted
 }
 
 public enum InputAudioError: Error {
