@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		304C4C981E0EFD9C0002F7A4 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304C4C961E0EFD9C0002F7A4 /* ReactiveSwift.framework */; };
+		304C4C991E0EFD9C0002F7A4 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304C4C971E0EFD9C0002F7A4 /* Result.framework */; };
 		305677F01E0ECB0C007737C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305677EF1E0ECB0C007737C3 /* AppDelegate.swift */; };
 		305677F21E0ECB0C007737C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305677F11E0ECB0C007737C3 /* ViewController.swift */; };
 		305677F51E0ECB0C007737C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 305677F31E0ECB0C007737C3 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		304C4C961E0EFD9C0002F7A4 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
+		304C4C971E0EFD9C0002F7A4 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		305677EC1E0ECB0C007737C3 /* WeatherBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		305677EF1E0ECB0C007737C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		305677F11E0ECB0C007737C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				304C4C981E0EFD9C0002F7A4 /* ReactiveSwift.framework in Frameworks */,
+				304C4C991E0EFD9C0002F7A4 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		304C4C951E0EFD9C0002F7A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				304C4C961E0EFD9C0002F7A4 /* ReactiveSwift.framework */,
+				304C4C971E0EFD9C0002F7A4 /* Result.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		305677E31E0ECB0C007737C3 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +96,7 @@
 				305678031E0ECB0C007737C3 /* WeatherBotTests */,
 				3056780E1E0ECB0C007737C3 /* WeatherBotUITests */,
 				305677ED1E0ECB0C007737C3 /* Products */,
+				304C4C951E0EFD9C0002F7A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +151,7 @@
 				305677E81E0ECB0C007737C3 /* Sources */,
 				305677E91E0ECB0C007737C3 /* Frameworks */,
 				305677EA1E0ECB0C007737C3 /* Resources */,
+				304C4C9A1E0EFDA50002F7A4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -256,6 +273,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		304C4C9A1E0EFDA50002F7A4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		305677E81E0ECB0C007737C3 /* Sources */ = {
@@ -416,6 +451,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 99DC555NUS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WeatherBot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanroibu.ios.WeatherBot;
@@ -429,6 +468,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 99DC555NUS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WeatherBot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanroibu.ios.WeatherBot;
@@ -514,6 +557,7 @@
 				305678161E0ECB0C007737C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		305678171E0ECB0C007737C3 /* Build configuration list for PBXNativeTarget "WeatherBotTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +566,7 @@
 				305678191E0ECB0C007737C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3056781A1E0ECB0C007737C3 /* Build configuration list for PBXNativeTarget "WeatherBotUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +575,7 @@
 				3056781C1E0ECB0C007737C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
