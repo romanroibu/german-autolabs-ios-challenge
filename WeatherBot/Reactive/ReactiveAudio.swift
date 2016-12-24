@@ -30,6 +30,19 @@ public protocol ReactiveInputAudioService {
     static var requestAuthorization: SignalProducer<InputAudioAuthorizationLevel, InputAudioAuthorizationError> { get }
 }
 
+extension ReactiveInputAudioService {
+    public static func authorized<T>(_ signal: SignalProducer<T, InputAudioError>) -> SignalProducer<T, InputAudioError> {
+        return self.requestAuthorization
+            .take(last: 1)
+            .flatMapError { error in
+                return SignalProducer(error: InputAudioError.authorization(error))
+            }
+            .flatMap(.latest) { level -> SignalProducer<T, InputAudioError> in
+                return signal
+            }
+    }
+}
+
 public final class ReactiveInputAudioCaptureSession: ReactiveInputAudioService {
     private static let mediaType = AVMediaTypeAudio
 
