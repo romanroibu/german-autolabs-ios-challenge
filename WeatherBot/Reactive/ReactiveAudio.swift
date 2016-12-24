@@ -41,6 +41,20 @@ extension ReactiveInputAudioService {
                 return signal
             }
     }
+
+    public static func inputAudioSampleBuffer<T, E>(drivenBy driver: Signal<T, E>) -> SignalProducer<CMSampleBuffer, InputAudioError> {
+        //Flatten all values and errors; they're not used anyway
+        let emptyDriver = driver
+            .flatMap(.latest) { value -> Signal<Void, NoError> in
+                return Signal<Void, NoError>.empty
+            }
+            .flatMapError { error -> SignalProducer<Void, NoError> in
+                return SignalProducer<Void, NoError>.empty
+            }
+
+        //Any event on driver will stop the audio sample signal
+        return self.inputAudioSampleBuffer.take(until: emptyDriver)
+    }
 }
 
 public final class ReactiveInputAudioCaptureSession: ReactiveInputAudioService {
