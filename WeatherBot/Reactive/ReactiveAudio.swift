@@ -26,3 +26,8 @@ public protocol ReactiveInputAudioService {
     static var inputAudioSampleBuffer: SignalProducer<CMSampleBuffer, InputAudioError> { get }
     static var requestAuthorization: SignalProducer<InputAudioAuthorizationLevel, InputAudioAuthorizationError> { get }
 }
+
+public final class ReactiveInputAudioCaptureSession: ReactiveInputAudioService {
+    private static let mediaType = AVMediaTypeAudio
+
+}
