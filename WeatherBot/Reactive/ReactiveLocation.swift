@@ -52,6 +52,38 @@ public protocol ReactiveLocationService {
     static func requestAuthorization(desired: LocationAuthorizationLevel) -> SignalProducer<LocationAuthorizationLevel, LocationAuthorizationError>
 }
 
+extension CLLocationManager: ReactiveLocationService {
+    public static var singleLocation: SignalProducer<CLLocation, LocationError> {
+        let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers //TODO: add accuracy param
+
+        let delegate = ReactiveLocationDelegate()
+        manager.delegate = delegate
+
+        let errorSignal = SignalProducer(delegate.didFail)
+            .map { $0 as NSError }
+            .flatMap(.latest) { error -> SignalProducer<CLLocation, LocationError> in
+                let clerror = CLError(_nsError: error)
+                let locationError = LocationError(clerror: clerror)
+                return SignalProducer<CLLocation, LocationError>(error: locationError)
+            }
+
+        let locationSignal = SignalProducer(delegate.didUpdateLocations)
+            .promoteErrors(LocationError.self)
+            .map { $0.last! }
+
+        return merge([errorSignal, locationSignal])
+            .take(first: 1)
+            .on(starting: {
+                    manager.requestLocation()
+                },
+                terminated: {
+                    //Capture strong reference to avoid deallocation
+                    _ = manager
+                    _ = delegate
+                })
+    }
+
 internal final class ReactiveLocationDelegate: NSObject, CLLocationManagerDelegate {
 
     private let didChangeAuthorizationStatusPipe = Signal<CLAuthorizationStatus, NoError>.pipe()
