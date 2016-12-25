@@ -27,7 +27,7 @@ public enum SpeechRecognizerAuthorizationError: Error {
 }
 
 public protocol SpeechRecognizerService {
-    static func recognize<E: Error>(speech: Signal<CMSampleBuffer, E>, locale: Locale) -> SignalProducer<String, SpeechRecognizerError<E>>
+    static func recognize<E: Error>(speech: Signal<CMSampleBuffer, E>, language: Language) -> SignalProducer<String, SpeechRecognizerError<E>>
     static var requestAuthorization: SignalProducer<SpeechRecognizerAuthorizationLevel, SpeechRecognizerAuthorizationError> { get }
 }
 
