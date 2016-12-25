@@ -31,6 +31,19 @@ public protocol SpeechRecognizerService {
     static var requestAuthorization: SignalProducer<SpeechRecognizerAuthorizationLevel, SpeechRecognizerAuthorizationError> { get }
 }
 
+extension SpeechRecognizerService {
+    public static func authorized<T, E>(_ signal: SignalProducer<T, SpeechRecognizerError<E>>) -> SignalProducer<T, SpeechRecognizerError<E>> {
+        return self.requestAuthorization
+            .take(last: 1)
+            .flatMapError { error in
+                return SignalProducer(error: SpeechRecognizerError<E>.authorization(error))
+            }
+            .flatMap(.latest) { value -> SignalProducer<T, SpeechRecognizerError<E>> in
+                return signal
+            }
+    }
+}
+
 public final class ReactiveSpeechRecognizer: SpeechRecognizerService {
     public static func recognize<E: Error>(speech: Signal<CMSampleBuffer, E>, language: Language) -> SignalProducer<String, SpeechRecognizerError<E>>{
         return self.recognize(speech: speech, locale: language.locale)
