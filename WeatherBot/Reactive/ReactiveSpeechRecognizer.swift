@@ -32,6 +32,50 @@ public protocol SpeechRecognizerService {
 }
 
 public final class ReactiveSpeechRecognizer: SpeechRecognizerService {
+    public static func recognize<E : Error>(speech: Signal<CMSampleBuffer, E>, locale: Locale) -> SignalProducer<String, SpeechRecognizerError<E>> {
+        //Construct recognizer if locale is supported
+        guard let recognizer = SFSpeechRecognizer(locale: locale) else {
+            return SignalProducer(error: .localeNotSupported)
+        }
+
+        //Make sure the recognizer is available
+        guard recognizer.isAvailable else {
+            return SignalProducer(error: .recognizerNotAvailable)
+        }
+
+        let request = SFSpeechAudioBufferRecognitionRequest()
+        let delegate = ReactiveSpeechRecognizerDelegate<E>()
+
+        //Start a new recognition task
+        recognizer.recognitionTask(with: request, delegate: delegate)
+
+        let disposableSpeech = speech.observe { event in
+            switch event {
+            case .value(let sample):
+                request.appendAudioSampleBuffer(sample)
+            case .completed:
+                request.endAudio()
+            case .failed(let error):
+                delegate.forward(error: error)
+                request.endAudio()
+            case .interrupted:
+                request.endAudio()
+            }
+        }
+
+        return SignalProducer<String, E>(delegate.didRecognize)
+            .flatMapError { error -> SignalProducer<String, SpeechRecognizerError<E>> in
+                return SignalProducer(error: .speech(error))
+            }
+            .on(terminated: {
+                disposableSpeech?.dispose()
+                //Capture strong reference to avoid deallocation
+                _ = request
+                _ = delegate
+                _ = recognizer
+            })
+    }
+
     public static var requestAuthorization: SignalProducer<SpeechRecognizerAuthorizationLevel, SpeechRecognizerAuthorizationError> {
         let authorizationChanges = SignalProducer<SFSpeechRecognizerAuthorizationStatus, NoError> { observer, disposable in
                 SFSpeechRecognizer.requestAuthorization { status in
