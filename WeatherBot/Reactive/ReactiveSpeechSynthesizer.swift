@@ -16,6 +16,10 @@ public protocol SpeechSynthesizerService {
 }
 
 public final class ReactiveSpeechSynthesizer: SpeechSynthesizerService {
+    public static func speak(text: String, language: Language) -> SignalProducer<NSRange, NoError> {
+        return self.speak(text: text, language: language.bcp47LanguageTag)
+    }
+
     public static func speak(text: String, language: String) -> SignalProducer<NSRange, NoError> {
         let synthesizer = AVSpeechSynthesizer()
         let utterance = AVSpeechUtterance(string: text)
