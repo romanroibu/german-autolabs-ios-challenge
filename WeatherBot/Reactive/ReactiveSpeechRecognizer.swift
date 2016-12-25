@@ -32,6 +32,10 @@ public protocol SpeechRecognizerService {
 }
 
 public final class ReactiveSpeechRecognizer: SpeechRecognizerService {
+    public static func recognize<E: Error>(speech: Signal<CMSampleBuffer, E>, language: Language) -> SignalProducer<String, SpeechRecognizerError<E>>{
+        return self.recognize(speech: speech, locale: language.locale)
+    }
+
     public static func recognize<E : Error>(speech: Signal<CMSampleBuffer, E>, locale: Locale) -> SignalProducer<String, SpeechRecognizerError<E>> {
         //Construct recognizer if locale is supported
         guard let recognizer = SFSpeechRecognizer(locale: locale) else {
