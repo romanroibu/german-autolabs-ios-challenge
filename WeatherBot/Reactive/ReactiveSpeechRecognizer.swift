@@ -70,3 +70,28 @@ public final class ReactiveSpeechRecognizer: SpeechRecognizerService {
         }
     }
 }
+
+internal final class ReactiveSpeechRecognizerDelegate<E: Error>: NSObject, SFSpeechRecognitionTaskDelegate {
+
+    private let didRecognizePipe = Signal<String, E>.pipe()
+
+    var didRecognize: Signal<String, E> {
+        return self.didRecognizePipe.output
+    }
+
+    func forward(error: E) {
+        self.didRecognizePipe.input.send(error: error)
+    }
+
+    func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) {
+        self.didRecognizePipe.input.sendCompleted()
+    }
+
+    func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
+        self.didRecognizePipe.input.send(value: transcription.formattedString)
+    }
+
+    func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishRecognition recognitionResult: SFSpeechRecognitionResult) {
+        self.didRecognizePipe.input.send(value: recognitionResult.bestTranscription.formattedString)
+    }
+}
