@@ -15,6 +15,30 @@ public protocol SpeechSynthesizerService {
     static func speak(text: String, language: Language) -> SignalProducer<NSRange, NoError>
 }
 
+public final class ReactiveSpeechSynthesizer: SpeechSynthesizerService {
+    public static func speak(text: String, language: String) -> SignalProducer<NSRange, NoError> {
+        let synthesizer = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: text)
+        let delegate = ReactiveSpeechSynthesizerDelegate()
+
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
+        synthesizer.delegate = delegate
+
+        return SignalProducer<NSRange, NoError>(delegate.willSpeakRangeOfSpeech)
+            .on(starting: {
+                synthesizer.speak(utterance)
+            },
+            interrupted: {
+                synthesizer.stopSpeaking(at: .word)
+            },
+            terminated: {
+                //Capture strong reference to avoid deallocation
+                _ = delegate
+                _ = synthesizer
+            })
+    }
+}
+
 internal final class ReactiveSpeechSynthesizerDelegate: NSObject, AVSpeechSynthesizerDelegate {
 
     private let willSpeakRangeOfSpeechPipe = Signal<NSRange, NoError>.pipe()
