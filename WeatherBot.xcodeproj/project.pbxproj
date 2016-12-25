@@ -19,6 +19,7 @@
 		305677FA1E0ECB0C007737C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 305677F81E0ECB0C007737C3 /* LaunchScreen.storyboard */; };
 		305678051E0ECB0C007737C3 /* WeatherBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305678041E0ECB0C007737C3 /* WeatherBotTests.swift */; };
 		305678101E0ECB0C007737C3 /* WeatherBotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056780F1E0ECB0C007737C3 /* WeatherBotUITests.swift */; };
+		30EE72B51E101CB700E90784 /* ReactiveSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72B41E101CB700E90784 /* ReactiveSpeechRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		3056780B1E0ECB0C007737C3 /* WeatherBotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherBotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3056780F1E0ECB0C007737C3 /* WeatherBotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBotUITests.swift; sourceTree = "<group>"; };
 		305678111E0ECB0C007737C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30EE72B41E101CB700E90784 /* ReactiveSpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveSpeechRecognizer.swift; path = Reactive/ReactiveSpeechRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				304C4C9E1E0F02D20002F7A4 /* ReactiveSwift.swift */,
 				304C4CA01E0F1DA40002F7A4 /* ReactiveAudio.swift */,
 				304C4C9B1E0EFE520002F7A4 /* ReactiveLocation.swift */,
+				30EE72B41E101CB700E90784 /* ReactiveSpeechRecognizer.swift */,
 			);
 			name = Reactive;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30EE72B51E101CB700E90784 /* ReactiveSpeechRecognizer.swift in Sources */,
 				305677F21E0ECB0C007737C3 /* ViewController.swift in Sources */,
 				304C4CA11E0F1DA40002F7A4 /* ReactiveAudio.swift in Sources */,
 				305677F01E0ECB0C007737C3 /* AppDelegate.swift in Sources */,
