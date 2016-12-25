@@ -20,6 +20,7 @@
 		305678051E0ECB0C007737C3 /* WeatherBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305678041E0ECB0C007737C3 /* WeatherBotTests.swift */; };
 		305678101E0ECB0C007737C3 /* WeatherBotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056780F1E0ECB0C007737C3 /* WeatherBotUITests.swift */; };
 		30EE72B51E101CB700E90784 /* ReactiveSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72B41E101CB700E90784 /* ReactiveSpeechRecognizer.swift */; };
+		30EE72B91E10780C00E90784 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72B81E10780C00E90784 /* Language.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		3056780F1E0ECB0C007737C3 /* WeatherBotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBotUITests.swift; sourceTree = "<group>"; };
 		305678111E0ECB0C007737C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30EE72B41E101CB700E90784 /* ReactiveSpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveSpeechRecognizer.swift; path = Reactive/ReactiveSpeechRecognizer.swift; sourceTree = "<group>"; };
+		30EE72B81E10780C00E90784 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Language.swift; path = Model/Language.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		305677EE1E0ECB0C007737C3 /* WeatherBot */ = {
 			isa = PBXGroup;
 			children = (
+				30EE72BA1E10781000E90784 /* Model */,
 				304C4C9D1E0EFE560002F7A4 /* Reactive */,
 				305677EF1E0ECB0C007737C3 /* AppDelegate.swift */,
 				305677F11E0ECB0C007737C3 /* ViewController.swift */,
@@ -159,6 +162,14 @@
 				305678111E0ECB0C007737C3 /* Info.plist */,
 			);
 			path = WeatherBotUITests;
+			sourceTree = "<group>";
+		};
+		30EE72BA1E10781000E90784 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				30EE72B81E10780C00E90784 /* Language.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 				304C4CA11E0F1DA40002F7A4 /* ReactiveAudio.swift in Sources */,
 				305677F01E0ECB0C007737C3 /* AppDelegate.swift in Sources */,
 				304C4C9F1E0F02D20002F7A4 /* ReactiveSwift.swift in Sources */,
+				30EE72B91E10780C00E90784 /* Language.swift in Sources */,
 				304C4C9C1E0EFE520002F7A4 /* ReactiveLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
