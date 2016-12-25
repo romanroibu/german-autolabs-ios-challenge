@@ -22,6 +22,7 @@
 		30EE72B51E101CB700E90784 /* ReactiveSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72B41E101CB700E90784 /* ReactiveSpeechRecognizer.swift */; };
 		30EE72B71E10768C00E90784 /* ReactiveSpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72B61E10768C00E90784 /* ReactiveSpeechSynthesizer.swift */; };
 		30EE72B91E10780C00E90784 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72B81E10780C00E90784 /* Language.swift */; };
+		30EE72BC1E107F7100E90784 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72BB1E107F7100E90784 /* Request.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		30EE72B41E101CB700E90784 /* ReactiveSpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveSpeechRecognizer.swift; path = Reactive/ReactiveSpeechRecognizer.swift; sourceTree = "<group>"; };
 		30EE72B61E10768C00E90784 /* ReactiveSpeechSynthesizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveSpeechSynthesizer.swift; path = Reactive/ReactiveSpeechSynthesizer.swift; sourceTree = "<group>"; };
 		30EE72B81E10780C00E90784 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Language.swift; path = Model/Language.swift; sourceTree = "<group>"; };
+		30EE72BB1E107F7100E90784 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Model/Request.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				30EE72B81E10780C00E90784 /* Language.swift */,
+				30EE72BB1E107F7100E90784 /* Request.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				30EE72B51E101CB700E90784 /* ReactiveSpeechRecognizer.swift in Sources */,
 				305677F21E0ECB0C007737C3 /* ViewController.swift in Sources */,
 				304C4CA11E0F1DA40002F7A4 /* ReactiveAudio.swift in Sources */,
+				30EE72BC1E107F7100E90784 /* Request.swift in Sources */,
 				305677F01E0ECB0C007737C3 /* AppDelegate.swift in Sources */,
 				304C4C9F1E0F02D20002F7A4 /* ReactiveSwift.swift in Sources */,
 				30EE72B91E10780C00E90784 /* Language.swift in Sources */,
