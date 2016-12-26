@@ -80,4 +80,31 @@ extension ReactiveConversationalAgent {
             )
         )
     }
+
+    public typealias AnswerValue = (icon: String?, summary: String)
+    public typealias AnswerError = AnyError //FIXME: Use more specific error enum
+    public typealias AnswerSignalProducer = SignalProducer<AnswerValue, AnswerError>
+
+    internal func answer(from intent: NaturalLanguageUnderstandingUnit.Intent) -> AnswerSignalProducer {
+        switch intent {
+        case .currentForecast:
+            return self.locationService.authorized(self.locationService.singleCoordinate)
+                .flatMapError { error in
+                    return SignalProducer(error: AnyError(error))
+                }
+                .map { coordinate in
+                    self.weatherService.current(coordinate: coordinate, language: self.language)
+                }
+                .flatMap(.latest) { request -> SignalProducer<Forecast, AnyError> in
+                    return self.networkService.load(request)
+                }
+                .map { forecast in
+                    let icon = forecast.id
+                    let summary = self.summarizer.forecast(forecast)
+                    return AnswerValue(icon, summary)
+                }
+        case .unknown:
+            return AnswerSignalProducer(value: AnswerValue(nil, self.summarizer.unknown))
+        }
+    }
 }
