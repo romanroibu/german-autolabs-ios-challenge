@@ -12,6 +12,11 @@ import Result
 
 public typealias Coordinate = (latitude: Double, longitude: Double)
 
+public enum Location {
+    case coordinate(Coordinate)
+    //TODO: Locations can be identified by city/country/region name
+}
+
 public enum LocationError: Error {
     case unknown
     case locationUnknown
