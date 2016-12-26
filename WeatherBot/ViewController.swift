@@ -24,7 +24,7 @@ class QuestionCell: UITableViewCell, Cell {
 class AnswerCell: UITableViewCell, Cell {
 }
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
