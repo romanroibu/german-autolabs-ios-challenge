@@ -18,6 +18,12 @@ extension Cell where Self: UITableViewCell {
     }
 }
 
+class QuestionCell: UITableViewCell, Cell {
+}
+
+class AnswerCell: UITableViewCell, Cell {
+}
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
