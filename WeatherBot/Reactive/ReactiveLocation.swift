@@ -47,12 +47,12 @@ public enum LocationAuthorizationError: Error {
     case restricted
 }
 
-public protocol ReactiveLocationService {
+public protocol LocationService {
     static var singleCoordinate: SignalProducer<Coordinate, LocationError> { get }
     static func requestAuthorization(desired: LocationAuthorizationLevel) -> SignalProducer<LocationAuthorizationLevel, LocationAuthorizationError>
 }
 
-extension ReactiveLocationService {
+extension LocationService {
     public static func authorized<T>(_ signal: SignalProducer<T, LocationError>, desiredLevel: LocationAuthorizationLevel = .whenInUse) -> SignalProducer<T, LocationError> {
         return self.requestAuthorization(desired: desiredLevel)
             .take(last: 1)
@@ -66,7 +66,7 @@ extension ReactiveLocationService {
     }
 }
 
-extension CLLocationManager: ReactiveLocationService {
+extension CLLocationManager: LocationService {
     public static var singleCoordinate: SignalProducer<Coordinate, LocationError> {
         return self.singleLocation.map { location in
             (location.coordinate.latitude, location.coordinate.longitude)
