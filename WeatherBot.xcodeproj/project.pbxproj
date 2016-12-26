@@ -25,6 +25,7 @@
 		30EE72BC1E107F7100E90784 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72BB1E107F7100E90784 /* Request.swift */; };
 		30EE72BE1E10808800E90784 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72BD1E10808800E90784 /* JSON.swift */; };
 		30EE72C01E1088D800E90784 /* ReactiveNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72BF1E1088D800E90784 /* ReactiveNetworking.swift */; };
+		30EE72C21E109BF800E90784 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72C11E109BF800E90784 /* Forecast.swift */; };
 		30EE72C41E109C7200E90784 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72C31E109C7200E90784 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		30EE72BB1E107F7100E90784 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Model/Request.swift; sourceTree = "<group>"; };
 		30EE72BD1E10808800E90784 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Model/JSON.swift; sourceTree = "<group>"; };
 		30EE72BF1E1088D800E90784 /* ReactiveNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveNetworking.swift; path = Reactive/ReactiveNetworking.swift; sourceTree = "<group>"; };
+		30EE72C11E109BF800E90784 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Forecast.swift; path = Model/Forecast.swift; sourceTree = "<group>"; };
 		30EE72C31E109C7200E90784 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				30EE72B81E10780C00E90784 /* Language.swift */,
+				30EE72C11E109BF800E90784 /* Forecast.swift */,
 				30EE72BB1E107F7100E90784 /* Request.swift */,
 				30EE72BD1E10808800E90784 /* JSON.swift */,
 			);
@@ -347,6 +350,7 @@
 				30EE72BE1E10808800E90784 /* JSON.swift in Sources */,
 				305677F21E0ECB0C007737C3 /* ViewController.swift in Sources */,
 				304C4CA11E0F1DA40002F7A4 /* ReactiveAudio.swift in Sources */,
+				30EE72C21E109BF800E90784 /* Forecast.swift in Sources */,
 				30EE72C01E1088D800E90784 /* ReactiveNetworking.swift in Sources */,
 				30EE72BC1E107F7100E90784 /* Request.swift in Sources */,
 				305677F01E0ECB0C007737C3 /* AppDelegate.swift in Sources */,
