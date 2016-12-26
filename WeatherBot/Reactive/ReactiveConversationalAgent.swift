@@ -65,3 +65,19 @@ public final class ReactiveConversationalAgent<A, L, N, R, S, W>
         )
     }
 }
+
+extension ReactiveConversationalAgent {
+    public typealias QuestionListeningError = SpeechRecognizerError<InputAudioError>
+    public typealias QuestionSignalProducer = SignalProducer<String, QuestionListeningError>
+
+    public func question<T, E: Error>(listenUntil driver: Signal<T, E>) -> QuestionSignalProducer {
+        return self.recognizerService.authorized(
+            self.recognizerService.recognize(
+                speech: self.audioService.authorized(
+                    audioService.inputAudioSampleBuffer(drivenBy: driver)
+                ),
+                language: self.language
+            )
+        )
+    }
+}
