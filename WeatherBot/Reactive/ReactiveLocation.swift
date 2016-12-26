@@ -69,6 +69,11 @@ extension LocationService {
                 return signal
             }
     }
+
+    public static var singleLocation: SignalProducer<Location, LocationError> {
+        return self.singleCoordinate
+            .map { Location.coordinate($0) }
+    }
 }
 
 extension CLLocationManager: LocationService {
