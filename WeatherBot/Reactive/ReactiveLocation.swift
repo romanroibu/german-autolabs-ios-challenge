@@ -73,12 +73,12 @@ extension LocationService {
 
 extension CLLocationManager: LocationService {
     public static var singleCoordinate: SignalProducer<Coordinate, LocationError> {
-        return self.singleLocation.map { location in
+        return self.singleCLLocation.map { location in
             (location.coordinate.latitude, location.coordinate.longitude)
         }
     }
 
-    public static var singleLocation: SignalProducer<CLLocation, LocationError> {
+    public static var singleCLLocation: SignalProducer<CLLocation, LocationError> {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers //TODO: add accuracy param
 
