@@ -193,7 +193,7 @@ extension DarkSky {
                     wind = (speed, direction)
                 }
 
-                return Forecast(
+                let forecast = Forecast(
                     id: try currently.value(forKey: .icon),
                     summary: try currently.value(forKey: .summary),
                     wind: wind,
@@ -205,6 +205,10 @@ extension DarkSky {
                     maxPrecipitation: maxPrecipitation,
                     dayTemperature: dailyTemperature
                 )
+
+                //Convert forecast to the desired units
+                //This ensures that the units in the summary match the rest of the forecast
+                return context.units?.converter.forecast(forecast) ?? forecast
             }
         )
     }
