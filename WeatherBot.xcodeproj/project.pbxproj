@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		303088181E11755C00D79F8E /* Understanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303088171E11755C00D79F8E /* Understanding.swift */; };
+		3030881C1E11952400D79F8E /* Summarizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3030881B1E11952400D79F8E /* Summarizer.swift */; };
 		304C4C981E0EFD9C0002F7A4 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304C4C961E0EFD9C0002F7A4 /* ReactiveSwift.framework */; };
 		304C4C991E0EFD9C0002F7A4 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304C4C971E0EFD9C0002F7A4 /* Result.framework */; };
 		304C4C9C1E0EFE520002F7A4 /* ReactiveLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C4C9B1E0EFE520002F7A4 /* ReactiveLocation.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		303088171E11755C00D79F8E /* Understanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Understanding.swift; path = Model/Understanding.swift; sourceTree = "<group>"; };
+		3030881B1E11952400D79F8E /* Summarizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Summarizer.swift; path = Model/Summarizer.swift; sourceTree = "<group>"; };
 		304C4C961E0EFD9C0002F7A4 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		304C4C971E0EFD9C0002F7A4 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		304C4C9B1E0EFE520002F7A4 /* ReactiveLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveLocation.swift; path = Reactive/ReactiveLocation.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				30EE72C91E10A46800E90784 /* ForecastConverter.swift */,
 				30EE72C71E109D3E00E90784 /* Weather.swift */,
 				303088171E11755C00D79F8E /* Understanding.swift */,
+				3030881B1E11952400D79F8E /* Summarizer.swift */,
 				30EE72BB1E107F7100E90784 /* Request.swift */,
 				30EE72BD1E10808800E90784 /* JSON.swift */,
 			);
@@ -365,6 +368,7 @@
 				30EE72C81E109D3E00E90784 /* Weather.swift in Sources */,
 				30EE72BC1E107F7100E90784 /* Request.swift in Sources */,
 				305677F01E0ECB0C007737C3 /* AppDelegate.swift in Sources */,
+				3030881C1E11952400D79F8E /* Summarizer.swift in Sources */,
 				30EE72C41E109C7200E90784 /* Extensions.swift in Sources */,
 				304C4C9F1E0F02D20002F7A4 /* ReactiveSwift.swift in Sources */,
 				30EE72B91E10780C00E90784 /* Language.swift in Sources */,
