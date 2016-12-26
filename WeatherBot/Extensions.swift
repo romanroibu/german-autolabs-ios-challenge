@@ -28,3 +28,15 @@ extension Measurement {
         return Measurement<UnitType>(value: self.value.rounded(), unit: self.unit)
     }
 }
+
+extension UnitSpeed {
+    public static var inchesPerHour: UnitSpeed {
+        let converter = UnitConverterLinear(coefficient: 141732.28337529)
+        return UnitSpeed(symbol: "in/h", converter: converter)
+    }
+
+    public static var millimetersPerHour: UnitSpeed {
+        let converter = UnitConverterLinear(coefficient: 1000)
+        return UnitSpeed(symbol: "mm/h", converter: converter)
+    }
+}
