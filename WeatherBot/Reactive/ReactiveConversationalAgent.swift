@@ -95,6 +95,22 @@ extension ReactiveConversationalAgent {
             .flatMap(.latest, transform: self.answer)
     }
 
+    public typealias SpokenAnswerValue = (answer: AnswerValue, spokenRange: NSRange)
+    public typealias SpokenAnswerSignalProducer = SignalProducer<SpokenAnswerValue, AnswerError>
+
+    public func spokenAnswer(from question: QuestionSignalProducer) -> SpokenAnswerSignalProducer {
+        return self.answer(from: question)
+            .flatMap(.latest) { answer -> SpokenAnswerSignalProducer in
+                let answerSignal = AnswerSignalProducer(value: answer)
+
+                let speechSignal = self.synthesizerService.speak(text: answer.summary.spokenText, language: self.language)
+                    .promoteErrors(AnswerError.self)
+
+                return answerSignal.combineLatest(with: speechSignal)
+                    .map { $0 as SpokenAnswerValue }
+            }
+    }
+
     internal func answer(from intent: NaturalLanguageUnderstandingUnit.Intent) -> AnswerSignalProducer {
         switch intent {
         case .currentForecast:
