@@ -25,12 +25,12 @@ public enum InputAudioError: Error {
     case authorization(InputAudioAuthorizationError)
 }
 
-public protocol ReactiveInputAudioService {
+public protocol InputAudioService {
     static var inputAudioSampleBuffer: SignalProducer<CMSampleBuffer, InputAudioError> { get }
     static var requestAuthorization: SignalProducer<InputAudioAuthorizationLevel, InputAudioAuthorizationError> { get }
 }
 
-extension ReactiveInputAudioService {
+extension InputAudioService {
     public static func authorized<T>(_ signal: SignalProducer<T, InputAudioError>) -> SignalProducer<T, InputAudioError> {
         return self.requestAuthorization
             .take(last: 1)
@@ -57,7 +57,7 @@ extension ReactiveInputAudioService {
     }
 }
 
-public final class ReactiveInputAudioCaptureSession: ReactiveInputAudioService {
+public final class ReactiveInputAudioCaptureSession: InputAudioService {
     private static let mediaType = AVMediaTypeAudio
 
     public static var inputAudioSampleBuffer: SignalProducer<CMSampleBuffer, InputAudioError> {
