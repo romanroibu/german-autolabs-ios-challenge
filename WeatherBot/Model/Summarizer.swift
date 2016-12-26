@@ -9,6 +9,20 @@
 import Foundation
 
 public struct Summarizer {
+    public struct Summary {
+        public let title: String
+        public let message: String
+
+        public var spokenText: String {
+            return [
+                self.title,
+                self.message,
+            ].joined(separator: Summary.sentenceSeparator)
+        }
+
+        fileprivate static let sentenceSeparator = ".\n"
+    }
+
     public let language: Language
 
     //TODO: Return localized summary, based on self.language
