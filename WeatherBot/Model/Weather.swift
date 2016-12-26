@@ -32,7 +32,7 @@ public struct DarkSky: WeatherService {
 
     fileprivate let base: URL
 
-    public init(secretKey: String, language: WeatherBot.Language) {
+    public init(secretKey: String) {
         precondition(secretKey.validate(allowedCharacters: .alphanumerics), "Secret key contains invalid characters")
         self.base = URL(string: "https://api.darksky.net/forecast/\(secretKey)/")!
     }
