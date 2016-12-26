@@ -97,6 +97,7 @@ public final class ReactiveSpeechRecognizer: SpeechRecognizerService {
         let authorizationChanges = SignalProducer<SFSpeechRecognizerAuthorizationStatus, NoError> { observer, disposable in
                 SFSpeechRecognizer.requestAuthorization { status in
                     observer.send(value: status)
+                    observer.sendCompleted()
                 }
             }
             .promoteErrors(SpeechRecognizerAuthorizationError.self)
