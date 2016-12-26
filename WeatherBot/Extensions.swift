@@ -18,3 +18,13 @@ extension String {
         return self.rangeOfCharacter(from: set) == nil
     }
 }
+
+extension Measurement {
+    public func rounded(_ rule: FloatingPointRoundingRule) -> Measurement<UnitType> {
+        return Measurement<UnitType>(value: self.value.rounded(rule), unit: self.unit)
+    }
+
+    public func rounded() -> Measurement<UnitType> {
+        return Measurement<UnitType>(value: self.value.rounded(), unit: self.unit)
+    }
+}
