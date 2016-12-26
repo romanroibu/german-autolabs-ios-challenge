@@ -8,6 +8,16 @@
 
 import UIKit
 
+protocol Cell {
+    static var identifier: String { get }
+}
+
+extension Cell where Self: UITableViewCell {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
