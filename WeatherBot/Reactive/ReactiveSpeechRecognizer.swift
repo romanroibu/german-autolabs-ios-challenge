@@ -42,6 +42,17 @@ extension SpeechRecognizerService {
                 return signal
             }
     }
+
+    public static func recognize<E : Error>(speech: SignalProducer<CMSampleBuffer, E>, language: Language) -> SignalProducer<String, SpeechRecognizerError<E>> {
+        //TODO: Not sure if this is The Right Way™ to compose these signal producers; investigate Lifetime usages
+        //TODO: Maybe implement the version that takes a signal as argument in terms of this method?
+        return SignalProducer<String, SpeechRecognizerError<E>> { observer, disposable in
+            speech.startWithSignal { speechSignal, speechDisposable in
+                disposable.add(speechDisposable)
+                self.recognize(speech: speechSignal, language: language).observe(observer, during: Lifetime.empty)
+            }
+        }
+    }
 }
 
 public final class ReactiveSpeechRecognizer: SpeechRecognizerService {
