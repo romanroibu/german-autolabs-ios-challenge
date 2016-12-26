@@ -53,3 +53,10 @@ public struct NaturalLanguageUnderstandingUnit {
         return speech
     }
 }
+
+public struct WeatherUnderstandingUnit: DomainUnderstandingUnit {
+    public func identifyIntent(in speech: DomainUnderstandingUnit.Speech, using language: DomainUnderstandingUnit.Language) -> DomainUnderstandingUnit.IntentGuess? {
+        //TODO: For now, whatever the input, the unit will understand it's a current forecast request
+        return (intent: .currentForecast, probability: 1.0)
+    }
+}
