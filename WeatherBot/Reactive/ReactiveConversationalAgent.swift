@@ -81,7 +81,7 @@ extension ReactiveConversationalAgent {
         )
     }
 
-    public typealias AnswerValue = (icon: String?, summary: String)
+    public typealias AnswerValue = (icon: String?, summary: Summarizer.Summary)
     public typealias AnswerError = AnyError //FIXME: Use more specific error enum
     public typealias AnswerSignalProducer = SignalProducer<AnswerValue, AnswerError>
 

@@ -26,29 +26,31 @@ public struct Summarizer {
     public let language: Language
 
     //TODO: Return localized summary, based on self.language
-    public var unknown: String {
-        return "Sorry, I don't know what you mean."
+    public var unknown: Summary {
+        return Summary(title: "Sorry, I don't know what you mean", message: "")
     }
 
     //TODO: Return localized summary, based on self.language
-    public func forecast(_ forecast: Forecast) -> String {
-        var summary: [String] = []
+    public func forecast(_ forecast: Forecast) -> Summary {
+        let title = forecast.summary
+        var message: [String] = []
 
         let formatter = MeasurementFormatter()
 
         if let temp = forecast.temperature {
-            summary.append("The temperature is \(formatter.string(from: temp.rounded())).")
+            message.append("The temperature is \(formatter.string(from: temp.rounded()))")
         }
         if let temp = forecast.feelsLike {
-            summary.append("It feels like \(formatter.string(from: temp.rounded())).")
+            message.append("It feels like \(formatter.string(from: temp.rounded()))")
         }
         if let precip = forecast.precipitation, precip.probability > 0.3 {
             let percent = (Int(precip.probability * 100) / 5) * 5
-            summary.append("There's a \(percent)% chance of \(precip.kind.rawValue) right now.")
+            message.append("There's a \(percent)% chance of \(precip.kind.rawValue) right now")
         }
         if let pressure = forecast.pressure {
-            summary.append("The pressure is \(formatter.string(from: pressure)).")
+            message.append("The pressure is \(formatter.string(from: pressure))")
         }
-        return summary.joined(separator: "\n")
+
+        return Summary(title: title, message: message.joined(separator: Summary.sentenceSeparator))
     }
 }
