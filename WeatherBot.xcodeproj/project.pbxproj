@@ -25,6 +25,7 @@
 		30EE72BC1E107F7100E90784 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72BB1E107F7100E90784 /* Request.swift */; };
 		30EE72BE1E10808800E90784 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72BD1E10808800E90784 /* JSON.swift */; };
 		30EE72C01E1088D800E90784 /* ReactiveNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72BF1E1088D800E90784 /* ReactiveNetworking.swift */; };
+		30EE72C41E109C7200E90784 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72C31E109C7200E90784 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		30EE72BB1E107F7100E90784 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Model/Request.swift; sourceTree = "<group>"; };
 		30EE72BD1E10808800E90784 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Model/JSON.swift; sourceTree = "<group>"; };
 		30EE72BF1E1088D800E90784 /* ReactiveNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveNetworking.swift; path = Reactive/ReactiveNetworking.swift; sourceTree = "<group>"; };
+		30EE72C31E109C7200E90784 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			children = (
 				30EE72BA1E10781000E90784 /* Model */,
 				304C4C9D1E0EFE560002F7A4 /* Reactive */,
+				30EE72C31E109C7200E90784 /* Extensions.swift */,
 				305677EF1E0ECB0C007737C3 /* AppDelegate.swift */,
 				305677F11E0ECB0C007737C3 /* ViewController.swift */,
 				305677F31E0ECB0C007737C3 /* Main.storyboard */,
@@ -347,6 +350,7 @@
 				30EE72C01E1088D800E90784 /* ReactiveNetworking.swift in Sources */,
 				30EE72BC1E107F7100E90784 /* Request.swift in Sources */,
 				305677F01E0ECB0C007737C3 /* AppDelegate.swift in Sources */,
+				30EE72C41E109C7200E90784 /* Extensions.swift in Sources */,
 				304C4C9F1E0F02D20002F7A4 /* ReactiveSwift.swift in Sources */,
 				30EE72B91E10780C00E90784 /* Language.swift in Sources */,
 				304C4C9C1E0EFE520002F7A4 /* ReactiveLocation.swift in Sources */,
