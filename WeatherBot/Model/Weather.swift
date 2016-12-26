@@ -209,3 +209,48 @@ extension DarkSky {
         )
     }
 }
+
+extension DarkSky.Units {
+    fileprivate var converter: ForecastConverter {
+        switch self {
+        case .auto:
+            return ForecastConverter()
+        case .ca:
+            return ForecastConverter(
+                temperature: .celsius,
+                pressure: .hectopascals,
+                visibility: .kilometers,
+                windSpeed: .kilometersPerHour,
+                precipitationIntensity: .millimetersPerHour,
+                precipitationAccumulation: .centimeters
+            )
+        case .us:
+            return ForecastConverter(
+                temperature: .fahrenheit,
+                pressure: .inchesOfMercury,
+                visibility: .miles,
+                windSpeed: .milesPerHour,
+                precipitationIntensity: .inchesPerHour,
+                precipitationAccumulation: .inches
+            )
+        case .uk2:
+            return ForecastConverter(
+                temperature: .celsius,
+                pressure: .hectopascals,
+                visibility: .miles,
+                windSpeed: .milesPerHour,
+                precipitationIntensity: .millimetersPerHour,
+                precipitationAccumulation: .centimeters
+            )
+        case .si:
+            return ForecastConverter(
+                temperature: .celsius,
+                pressure: .hectopascals,
+                visibility: .kilometers,
+                windSpeed: .metersPerSecond,
+                precipitationIntensity: .millimetersPerHour,
+                precipitationAccumulation: .centimeters
+            )
+        }
+    }
+}
