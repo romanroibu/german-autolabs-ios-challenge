@@ -20,6 +20,8 @@ extension String {
 }
 
 extension Measurement {
+    public typealias Unit = UnitType
+
     public func rounded(_ rule: FloatingPointRoundingRule) -> Measurement<UnitType> {
         return Measurement<UnitType>(value: self.value.rounded(rule), unit: self.unit)
     }
