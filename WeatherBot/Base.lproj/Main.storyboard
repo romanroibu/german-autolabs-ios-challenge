@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tpd-ea-0pU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dCk-cC-a1Z">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Weather Bot-->
         <scene sceneID="nFC-gQ-Qwe">
             <objects>
                 <tableViewController id="Tpd-ea-0pU" customClass="ViewController" customModule="WeatherBot" customModuleProvider="target" sceneMemberID="viewController">
@@ -40,10 +40,29 @@
                             <outlet property="delegate" destination="Tpd-ea-0pU" id="AUL-gh-q08"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Weather Bot" id="GeF-WC-B5G"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6eg-gK-ams" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="217" y="49"/>
+            <point key="canvasLocation" x="1156" y="48.125937031484263"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DXF-6P-gWm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dCk-cC-a1Z" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ShL-Ik-qrt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Tpd-ea-0pU" kind="relationship" relationship="rootViewController" id="T8M-gL-vNU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zAj-Uu-E4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="216.80000000000001" y="48.125937031484263"/>
         </scene>
     </scenes>
 </document>
