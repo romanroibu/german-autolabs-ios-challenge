@@ -85,6 +85,16 @@ extension ReactiveConversationalAgent {
     public typealias AnswerError = AnyError //FIXME: Use more specific error enum
     public typealias AnswerSignalProducer = SignalProducer<AnswerValue, AnswerError>
 
+    public func answer(from question: QuestionSignalProducer) -> AnswerSignalProducer {
+        return question
+            .take(last: 1)
+            .map(self.nlu.identifyIntent)
+            .flatMapError { questionError in
+                return SignalProducer(error: AnswerError(questionError))
+            }
+            .flatMap(.latest, transform: self.answer)
+    }
+
     internal func answer(from intent: NaturalLanguageUnderstandingUnit.Intent) -> AnswerSignalProducer {
         switch intent {
         case .currentForecast:
