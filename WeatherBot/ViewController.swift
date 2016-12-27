@@ -120,6 +120,26 @@ class ViewController: UITableViewController {
     }
 
 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath {
+        case questionIndexPath:
+            let cell: QuestionCell = self.dequeueCell(from: tableView, for: indexPath)
+            let question = self.viewModel.question!
+            cell.questionLabel.text = question
+            return cell
+        case answerIndexPath:
+            let cell: AnswerCell = self.dequeueCell(from: tableView, for: indexPath)
+            let answer = self.viewModel.spokenAnswer!.answer
+            let defaultImage = UIImage(named: "cloudy")!
+            cell.iconImageView.image = answer.icon.flatMap { UIImage(named: $0) } ?? defaultImage
+            cell.titleLabel.text = answer.summary.title
+            cell.messageLabel.text = answer.summary.message
+            return cell
+        default:
+            fatalError("Can only deal with one question and one answer max, for now")
+        }
+    }
+
     private func dequeueCell<C: Cell>(from tableView: UITableView, for indexPath: IndexPath) -> C where C: UITableViewCell {
         return tableView.dequeueReusableCell(withIdentifier: C.identifier, for: indexPath) as! C
     }
