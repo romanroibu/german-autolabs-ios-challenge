@@ -165,10 +165,10 @@
 			children = (
 				30EE72BA1E10781000E90784 /* Model */,
 				304C4C9D1E0EFE560002F7A4 /* Reactive */,
-				30EE72C31E109C7200E90784 /* Extensions.swift */,
-				305677EF1E0ECB0C007737C3 /* AppDelegate.swift */,
 				3088C1531E13271D000952F4 /* ViewModel */,
 				305677F11E0ECB0C007737C3 /* ViewController.swift */,
+				305677EF1E0ECB0C007737C3 /* AppDelegate.swift */,
+				30EE72C31E109C7200E90784 /* Extensions.swift */,
 				305677F31E0ECB0C007737C3 /* Main.storyboard */,
 				305677F61E0ECB0C007737C3 /* Assets.xcassets */,
 				305677F81E0ECB0C007737C3 /* LaunchScreen.storyboard */,
