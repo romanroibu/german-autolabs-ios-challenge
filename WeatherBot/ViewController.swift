@@ -23,6 +23,9 @@ class QuestionCell: UITableViewCell, Cell {
 }
 
 class AnswerCell: UITableViewCell, Cell {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
 }
 
 class ViewController: UITableViewController {
