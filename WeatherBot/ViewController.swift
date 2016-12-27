@@ -252,3 +252,18 @@ extension ViewController {
         return alert
     }
 }
+
+extension ViewController {
+    fileprivate func agentActivity(event: Event<Bool, NoError>) {
+        switch event {
+        case .value(let isActive):
+            UIApplication.shared.isNetworkActivityIndicatorVisible = isActive
+        case .failed(_):
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        case .interrupted:
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        case .completed:
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
+    }
+}
