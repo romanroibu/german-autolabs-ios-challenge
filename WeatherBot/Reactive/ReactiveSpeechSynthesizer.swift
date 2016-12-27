@@ -33,7 +33,7 @@ public final class ReactiveSpeechSynthesizer: SpeechSynthesizerService {
                 synthesizer.speak(utterance)
             },
             interrupted: {
-                synthesizer.stopSpeaking(at: .word)
+                synthesizer.stopSpeaking(at: .immediate)
             },
             terminated: {
                 //Capture strong reference to avoid deallocation
