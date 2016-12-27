@@ -47,6 +47,16 @@ class ViewController: UITableViewController {
         )
     )
 
+    @IBAction func listenAction(_ sender: Any) {
+        //Toggle button selection
+        self.listenButton.isSelected = !self.listenButton.isSelected
+
+        if self.listenButton.isSelected {
+            self.viewModel.startListening()
+        } else {
+            self.viewModel.stopListening()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
