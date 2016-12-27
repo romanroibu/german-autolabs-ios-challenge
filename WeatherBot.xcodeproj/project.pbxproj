@@ -23,6 +23,7 @@
 		305677FA1E0ECB0C007737C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 305677F81E0ECB0C007737C3 /* LaunchScreen.storyboard */; };
 		305678051E0ECB0C007737C3 /* WeatherBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305678041E0ECB0C007737C3 /* WeatherBotTests.swift */; };
 		305678101E0ECB0C007737C3 /* WeatherBotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056780F1E0ECB0C007737C3 /* WeatherBotUITests.swift */; };
+		3088C1551E132733000952F4 /* ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3088C1541E132733000952F4 /* ErrorDescription.swift */; };
 		30EE72B51E101CB700E90784 /* ReactiveSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72B41E101CB700E90784 /* ReactiveSpeechRecognizer.swift */; };
 		30EE72B71E10768C00E90784 /* ReactiveSpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72B61E10768C00E90784 /* ReactiveSpeechSynthesizer.swift */; };
 		30EE72B91E10780C00E90784 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE72B81E10780C00E90784 /* Language.swift */; };
@@ -75,6 +76,7 @@
 		3056780B1E0ECB0C007737C3 /* WeatherBotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherBotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3056780F1E0ECB0C007737C3 /* WeatherBotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBotUITests.swift; sourceTree = "<group>"; };
 		305678111E0ECB0C007737C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3088C1541E132733000952F4 /* ErrorDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorDescription.swift; path = ViewModel/ErrorDescription.swift; sourceTree = "<group>"; };
 		30EE72B41E101CB700E90784 /* ReactiveSpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveSpeechRecognizer.swift; path = Reactive/ReactiveSpeechRecognizer.swift; sourceTree = "<group>"; };
 		30EE72B61E10768C00E90784 /* ReactiveSpeechSynthesizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveSpeechSynthesizer.swift; path = Reactive/ReactiveSpeechSynthesizer.swift; sourceTree = "<group>"; };
 		30EE72B81E10780C00E90784 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Language.swift; path = Model/Language.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				30EE72C41E109C7200E90784 /* Extensions.swift in Sources */,
 				304C4C9F1E0F02D20002F7A4 /* ReactiveSwift.swift in Sources */,
 				30EE72B91E10780C00E90784 /* Language.swift in Sources */,
+				3088C1551E132733000952F4 /* ErrorDescription.swift in Sources */,
 				3030881A1E117E7100D79F8E /* ReactiveConversationalAgent.swift in Sources */,
 				304C4C9C1E0EFE520002F7A4 /* ReactiveLocation.swift in Sources */,
 				30EE72CA1E10A46800E90784 /* ForecastConverter.swift in Sources */,
