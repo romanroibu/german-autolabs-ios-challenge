@@ -119,6 +119,20 @@ class ViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2 // Q & A
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case self.questionIndexPath.section:
+            return self.viewModel.question != nil ? 1 : 0
+        case self.answerIndexPath.section:
+            return self.viewModel.spokenAnswer != nil ? 1 : 0
+        default:
+            return 0
+        }
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath {
