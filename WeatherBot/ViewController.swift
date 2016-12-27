@@ -19,6 +19,7 @@ extension Cell where Self: UITableViewCell {
 }
 
 class QuestionCell: UITableViewCell, Cell {
+    @IBOutlet weak var questionLabel: UILabel!
 }
 
 class AnswerCell: UITableViewCell, Cell {
