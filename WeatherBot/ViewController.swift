@@ -163,4 +163,64 @@ extension ViewController {
     fileprivate var questionIndexPath:  IndexPath { return IndexPath(row: 0, section: 0) }
 
     fileprivate var answerIndexPath:    IndexPath { return IndexPath(row: 0, section: 1) }
+
+    fileprivate func dialogUpdate(event: Event<[DialogUpdate], NoError>) {
+        switch event {
+        case .value(let batch):
+            guard !batch.isEmpty else { return }
+            self.tableView.beginUpdates()
+            for update in batch {
+                let indexPath = self.indexPath(update: update)
+                let animation = self.animation(update: update)
+                switch update.action {
+                case .insert:
+                    self.tableView.insertRows(at: [indexPath], with: animation)
+                case .update:
+                    self.tableView.reloadRows(at: [indexPath], with: animation)
+                    break
+                case .delete:
+                    self.tableView.deleteRows(at: [indexPath], with: animation)
+                }
+            }
+            self.tableView.endUpdates()
+        case .failed(_):
+            if self.listenButton.isSelected {
+                self.listenAction(self)
+            }
+        case .interrupted:
+            if self.listenButton.isSelected {
+                self.listenAction(self)
+            }
+        case .completed:
+            if self.listenButton.isSelected {
+                self.listenAction(self)
+            }
+        }
+    }
+
+    private func indexPath(update: DialogUpdate) -> IndexPath {
+        switch update.part {
+        case .question:
+            return self.questionIndexPath
+        case .answer:
+            return self.answerIndexPath
+        }
+    }
+
+    private func animation(update: DialogUpdate) -> UITableViewRowAnimation {
+        switch (update.action, update.part) {
+        case (.insert, .question):
+            return .right
+        case (.insert, .answer):
+            return .left
+        case (.update, .question):
+            return .none
+        case (.update, .answer):
+            return .none
+        case (.delete, .question):
+            return .left
+        case (.delete, .answer):
+            return .right
+        }
+    }
 }
