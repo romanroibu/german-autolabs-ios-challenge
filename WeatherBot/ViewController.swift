@@ -29,6 +29,20 @@ class AnswerCell: UITableViewCell, Cell {
 }
 
 class ViewController: UITableViewController {
+    let viewModel = ViewModel(
+        agent: ReactiveConversationalAgent(
+            language: .english,
+            audioService: ReactiveInputAudioCaptureSession.self,
+            locationService: CLLocationManager.self,
+            networkService: ReactiveURLSession(session: .shared),
+            recognizerService: ReactiveSpeechRecognizer.self,
+            synthesizerService: ReactiveSpeechSynthesizer.self,
+            weatherService: DarkSky(secretKey: "3d48fdfd9e159eac616fddb1ac870983"),
+            domainUnits: [
+                WeatherUnderstandingUnit(),
+            ]
+        )
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
