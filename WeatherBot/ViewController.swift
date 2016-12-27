@@ -145,3 +145,8 @@ class ViewController: UITableViewController {
     }
 }
 
+extension ViewController {
+    fileprivate var questionIndexPath:  IndexPath { return IndexPath(row: 0, section: 0) }
+
+    fileprivate var answerIndexPath:    IndexPath { return IndexPath(row: 0, section: 1) }
+}
