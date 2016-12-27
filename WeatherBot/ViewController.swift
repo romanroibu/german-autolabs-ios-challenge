@@ -108,6 +108,10 @@ class ViewController: UITableViewController {
 
         //Set up table view footer with record button
         self.tableView.tableFooterView = self.tableFooter
+
+        //Set up table view to use self-sizing cells
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
     }
 
     override func didReceiveMemoryWarning() {
