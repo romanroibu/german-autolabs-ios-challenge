@@ -10,7 +10,25 @@ import Foundation
 import ReactiveSwift
 import Result
 
-public protocol ConversationalAgentService {}
+public protocol ConversationalAgentService {
+    typealias QuestionListeningError = SpeechRecognizerError<InputAudioError>
+    typealias QuestionSignal = Signal<String, QuestionListeningError>
+    typealias QuestionSignalProducer = SignalProducer<String, QuestionListeningError>
+
+    typealias AnswerValue = (icon: String?, summary: Summarizer.Summary)
+    typealias AnswerError = AnyError //FIXME: Use more specific error enum
+    typealias AnswerSignalProducer = SignalProducer<AnswerValue, AnswerError>
+
+    typealias SpokenAnswerValue = (answer: AnswerValue, spokenRange: NSRange)
+    typealias SpokenAnswerSignal = Signal<SpokenAnswerValue, AnswerError>
+    typealias SpokenAnswerSignalProducer = SignalProducer<SpokenAnswerValue, AnswerError>
+
+    func question<T, E: Error>(listenUntil driver: Signal<T, E>) -> QuestionSignalProducer
+    func answer(from question: QuestionSignal) -> AnswerSignalProducer
+    func answer(from question: QuestionSignalProducer) -> AnswerSignalProducer
+    func spokenAnswer(from question: QuestionSignal) -> SpokenAnswerSignalProducer
+    func spokenAnswer(from question: QuestionSignalProducer) -> SpokenAnswerSignalProducer
+}
 
 public final class ReactiveConversationalAgent<A, L, N, R, S, W>
     where
@@ -67,8 +85,17 @@ public final class ReactiveConversationalAgent<A, L, N, R, S, W>
 }
 
 extension ReactiveConversationalAgent {
-    public typealias QuestionListeningError = SpeechRecognizerError<InputAudioError>
-    public typealias QuestionSignalProducer = SignalProducer<String, QuestionListeningError>
+    public typealias QuestionListeningError = ConversationalAgentService.QuestionListeningError
+    public typealias QuestionSignal         = ConversationalAgentService.QuestionSignal
+    public typealias QuestionSignalProducer = ConversationalAgentService.QuestionSignalProducer
+
+    public typealias AnswerValue          = ConversationalAgentService.AnswerValue
+    public typealias AnswerError          = ConversationalAgentService.AnswerError
+    public typealias AnswerSignalProducer = ConversationalAgentService.AnswerSignalProducer
+
+    public typealias SpokenAnswerValue          = ConversationalAgentService.SpokenAnswerValue
+    public typealias SpokenAnswerSignal         = ConversationalAgentService.SpokenAnswerSignal
+    public typealias SpokenAnswerSignalProducer = ConversationalAgentService.SpokenAnswerSignalProducer
 
     public func question<T, E: Error>(listenUntil driver: Signal<T, E>) -> QuestionSignalProducer {
         return self.recognizerService.authorized(
@@ -81,10 +108,6 @@ extension ReactiveConversationalAgent {
         )
     }
 
-    public typealias AnswerValue = (icon: String?, summary: Summarizer.Summary)
-    public typealias AnswerError = AnyError //FIXME: Use more specific error enum
-    public typealias AnswerSignalProducer = SignalProducer<AnswerValue, AnswerError>
-
     public func answer(from question: QuestionSignalProducer) -> AnswerSignalProducer {
         return question
             .take(last: 1)
@@ -94,9 +117,6 @@ extension ReactiveConversationalAgent {
             }
             .flatMap(.latest, transform: self.answer)
     }
-
-    public typealias SpokenAnswerValue = (answer: AnswerValue, spokenRange: NSRange)
-    public typealias SpokenAnswerSignalProducer = SignalProducer<SpokenAnswerValue, AnswerError>
 
     public func spokenAnswer(from question: QuestionSignalProducer) -> SpokenAnswerSignalProducer {
         return self.answer(from: question)
