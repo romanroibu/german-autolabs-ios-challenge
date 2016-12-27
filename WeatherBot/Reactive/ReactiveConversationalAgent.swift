@@ -84,7 +84,7 @@ public final class ReactiveConversationalAgent<A, L, N, R, S, W>
     }
 }
 
-extension ReactiveConversationalAgent {
+extension ReactiveConversationalAgent: ConversationalAgentService {
     public typealias QuestionListeningError = ConversationalAgentService.QuestionListeningError
     public typealias QuestionSignal         = ConversationalAgentService.QuestionSignal
     public typealias QuestionSignalProducer = ConversationalAgentService.QuestionSignalProducer
