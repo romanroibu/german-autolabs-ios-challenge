@@ -224,3 +224,31 @@ extension ViewController {
         }
     }
 }
+
+extension ViewController {
+    fileprivate func failure(event: Event<Error, NoError>) {
+        switch event {
+        case .value(let error):
+            if self.listenButton.isSelected {
+                self.listenAction(self)
+            }
+            guard self.presentedViewController == nil else { return }
+            let alert = self.alert(error: error)
+            self.present(alert, animated: true) {}
+        case .failed(_):
+            break
+        case .interrupted:
+            break
+        case .completed:
+            break
+        }
+    }
+
+    private func alert(error: Error) -> UIAlertController {
+        //TODO: Localize alert title and OK button
+        let message = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        return alert
+    }
+}
