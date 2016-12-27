@@ -57,6 +57,14 @@ class ViewController: UITableViewController {
             self.viewModel.stopListening()
         }
     }
+
+    lazy var listenButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 75, height: 75))
+        button.setImage(UIImage(named: "listen-start"), for: .normal)
+        button.setImage(UIImage(named: "listen-stop"), for: .selected)
+        button.addTarget(self, action: #selector(self.listenAction(_:)), for: .touchUpInside)
+        return button
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
