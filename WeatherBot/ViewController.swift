@@ -112,6 +112,18 @@ class ViewController: UITableViewController {
         //Set up table view to use self-sizing cells
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
+
+        _ = self.viewModel.dialogUpdate
+            .observe(on: UIScheduler())
+            .observe(Observer(self.dialogUpdate))
+
+        _ = self.viewModel.failure
+            .observe(on: UIScheduler())
+            .observe(Observer(self.failure))
+
+        _ = self.viewModel.agentActivity
+            .observe(on: UIScheduler())
+            .observe(Observer(self.agentActivity))
     }
 
     override func didReceiveMemoryWarning() {
