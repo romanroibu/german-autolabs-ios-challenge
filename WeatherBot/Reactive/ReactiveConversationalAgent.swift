@@ -30,6 +30,16 @@ public protocol ConversationalAgentService {
     func spokenAnswer(from question: QuestionSignalProducer) -> SpokenAnswerSignalProducer
 }
 
+extension ConversationalAgentService {
+    public func answer(from question: QuestionSignal) -> AnswerSignalProducer {
+        return self.answer(from: QuestionSignalProducer(question))
+    }
+
+    public func spokenAnswer(from question: QuestionSignal) -> SpokenAnswerSignalProducer {
+        return self.spokenAnswer(from: QuestionSignalProducer(question))
+    }
+}
+
 public final class ReactiveConversationalAgent<A, L, N, R, S, W>
     where
     A: InputAudioService,
