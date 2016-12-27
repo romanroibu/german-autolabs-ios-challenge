@@ -105,7 +105,9 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        //Set up table view footer with record button
+        self.tableView.tableFooterView = self.tableFooter
     }
 
     override func didReceiveMemoryWarning() {
