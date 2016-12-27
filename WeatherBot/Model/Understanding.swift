@@ -39,6 +39,9 @@ public struct NaturalLanguageUnderstandingUnit {
             .flatMap { unit in
                 unit.identifyIntent(in: parsedSpeech, using: self.language)
             }
+            .filter { guess in
+                guess.probability > 0.5
+            }
             .sorted { x, y in
                 //Sort highest probability first
                 x.probability > y.probability
