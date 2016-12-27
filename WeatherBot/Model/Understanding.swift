@@ -59,7 +59,15 @@ public struct NaturalLanguageUnderstandingUnit {
 
 public struct WeatherUnderstandingUnit: DomainUnderstandingUnit {
     public func identifyIntent(in speech: DomainUnderstandingUnit.Speech, using language: DomainUnderstandingUnit.Language) -> DomainUnderstandingUnit.IntentGuess? {
-        //TODO: For now, whatever the input, the unit will understand it's a current forecast request
-        return (intent: .currentForecast, probability: 1.0)
+        let nonAlphanumerics = CharacterSet.alphanumerics.inverted
+        let words = speech.components(separatedBy: nonAlphanumerics)
+        let keywords = ["weather", "forecast", "temperature"]
+
+        //If speech contains any weather-related keywords, then it's probably a current forecast request
+        if words.first(where: { keywords.contains($0) }) != nil {
+            return (intent: .currentForecast, probability: 0.7)
+        } else {
+            return nil
+        }
     }
 }
