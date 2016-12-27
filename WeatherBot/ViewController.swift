@@ -120,5 +120,8 @@ class ViewController: UITableViewController {
     }
 
 
+    private func dequeueCell<C: Cell>(from tableView: UITableView, for indexPath: IndexPath) -> C where C: UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: C.identifier, for: indexPath) as! C
+    }
 }
 
