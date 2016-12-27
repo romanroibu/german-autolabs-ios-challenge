@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
+import ReactiveSwift
+import Result
 
 protocol Cell {
     static var identifier: String { get }
