@@ -3,6 +3,13 @@ We want to know how you write **code** - we don't care about coding challenges w
 
 Your task is to create a very small iOS application (written in Swift 3) which will listen to a voice of the user and will tell them the current weather information when asked for. It's up to you to decide how exactly you want to approach this challenge - do you want to use the native iOS SDKs for voice recognition, use offline voice recognition for keywords (e.g. PocketSphinx) or another online service with conversational capabilities (e.g. api.ai, Microsoft LUIS, etc.). You can also choose whichever weather service you want.
 
+## Building
+
+The project uses [Carthage]() for dependency management. To update the dependencies, run:
+```bash
+carthage update
+```
+
 ## What we'll look at
 - Structure of the code - how you use controllers, services, views. Keep it clean and reusable.
 - Code formatting, included unit and UI tests.
